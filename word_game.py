@@ -5,16 +5,16 @@ secret_word = random.choice(words)
 Hidden = ""
 print(f"hint: {len(secret_word)} letters")
 
-while Hidden != secret_word:
+while len(Hidden) != len(secret_word):
         
         guess= input("guess_word: ")
         for char in secret_word:
             if guess in char:
                   print(char)
                   Hidden += guess
-                  if len(Hidden) == len(secret_word):
-                        print(f"{secret_word} \nWon!")
-                        break
+            if len(Hidden) == len(secret_word):
+                  print(f"{secret_word} \nWon!")
+                  break
             else:
                   print("_")
 
