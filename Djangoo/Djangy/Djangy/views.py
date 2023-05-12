@@ -11,7 +11,15 @@ def contact(request):
     return render(request,"dev.html")
 
 def about(request):
+
     return render(request, "prac.html")
 
-def search(request):
-    return HttpResponse("<button><a href='/about'>back</a></button>")
+def login(request):
+    punctuation= '''~`#,^*-{]'"/\?'''
+    hidden_text=request.GET.get('text', 'default')
+    value=''
+    for char in hidden_text:
+        if char not in punctuation:
+            value = value + char
+    params = {'key':value}
+    return render(request, 'analyze.html', params)
