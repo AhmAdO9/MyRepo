@@ -1,7 +1,8 @@
-"""ownWEB URL Configuration
+"""
+URL configuration for Djangy project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -19,8 +20,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index' ),
+        path('', views.index, name='index' ),
     path('contact', views.contact, name='contact' ),
     path('about', views.about, name='about' ),
     path('login', views.search, name='login' )
+
 ]
+
