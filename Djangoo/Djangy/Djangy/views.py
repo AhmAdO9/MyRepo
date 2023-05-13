@@ -29,7 +29,8 @@ def login(request):
             if char not in punctuation:
                 value = value + char
         params = {'key':value,'chk':'box'}
-        return render(request, 'analyze.html', params)
+        hidden_text = value
+        # return render(request, 'analyze.html', params)
        
     if tick1 == 'on': 
         value=''
@@ -37,7 +38,8 @@ def login(request):
             if char != '\n' and char!= '\r' :
                 value = value + char 
         params = {'key':value,'chk':'box'}
-        return render(request, 'analyze.html', params)
+        hidden_text = value
+        # return render(request, 'analyze.html', params)
     
     if tick2 == 'on': 
         value=''
@@ -46,7 +48,8 @@ def login(request):
         # for char2 in value:
         #         value = value + char2.upper()
         params = {'key':value,'chk':'box'}
-        return render(request, 'analyze.html', params)
+        hidden_text = value
+        # return render(request, 'analyze.html', params)
     
     if tick3 == 'on': 
         value=''
@@ -54,12 +57,14 @@ def login(request):
             if not(hidden_text[index] == " " and hidden_text[index + 1]) == " ":
               value = value + char
         params = {'key':value,'chk':'box'}
-        return render(request, 'analyze.html', params)
+        hidden_text = value
+        # return render(request, 'analyze.html', params)
     
     if tick4 == 'on': 
         value=len(hidden_text)
         params = {'key':value,'chk':'box'}
-        return render(request, 'analyze.html', params)
+        hidden_text = value
+        # return render(request, 'analyze.html', params)
 
-    else:
-        return HttpResponse(hidden_text)
+    
+    return render(request, 'analyze.html', params)
