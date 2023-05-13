@@ -65,6 +65,10 @@ def login(request):
         params = {'key':value,'chk':'box'}
         hidden_text = value
         # return render(request, 'analyze.html', params)
+    
+    if tick != 'on' and tick1 != 'on' and tick2 != 'on' and tick3 != 'on' and tick4 != 'on' :
+        return HttpResponse("select any option..")
+
 
     
     return render(request, 'analyze.html', params)
