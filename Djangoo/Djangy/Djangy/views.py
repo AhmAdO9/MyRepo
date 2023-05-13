@@ -7,7 +7,7 @@ def index(request):
     
 
 def contact(request):
-    request.Get.get('text', 'default')
+    request.POST.get('text', 'default')
     return render(request,"dev.html")
 
 def about(request):
@@ -16,13 +16,13 @@ def about(request):
 
 def login(request):
     punctuation= '''~`#,^*-{]'."/\?:\=-)(*&%$#@!~_+|\?><,.:"{}[]);'''
-    hidden_text=request.GET.get('text', 'default')
+    hidden_text=request.POST.get('text', 'default')
 
-    tick = request.GET.get('check', 'off')
-    # tick1 = request.GET.get('check1', 'off')
-    tick2 = request.GET.get('check2', 'off')
-    tick3 = request.GET.get('check3', 'off')
-    tick4 = request.GET.get('check4', 'off')
+    tick = request.POST.get('check', 'off')
+    tick1 = request.POST.get('check1', 'off')
+    tick2 = request.POST.get('check2', 'off')
+    tick3 = request.POST.get('check3', 'off')
+    tick4 = request.POST.get('check4', 'off')
     if tick == 'on': 
         value=''
         for char in hidden_text:
@@ -31,13 +31,13 @@ def login(request):
         params = {'key':value,'chk':'box'}
         return render(request, 'analyze.html', params)
        
-    # if tick1 == 'on': 
-    #     value=''
-    #     for index, char1 in enumerate(hidden_text):
-    #         if hidden_text[index] == " " and hidden_text[index + 1] == " ":
-    #             value = value + 
-    #     params = {'key':value,'chk':'box'}
-    #     return render(request, 'analyze.html', params)
+    if tick1 == 'on': 
+        value=''
+        for char in hidden_text:
+            if char != '\n' and char!= '\r' :
+                value = value + char 
+        params = {'key':value,'chk':'box'}
+        return render(request, 'analyze.html', params)
     
     if tick2 == 'on': 
         value=''
@@ -49,11 +49,10 @@ def login(request):
         return render(request, 'analyze.html', params)
     
     if tick3 == 'on': 
-        new1 = ''
-        for k in value:
-            if k != ' ':
-              new1 = new1 + k
-        value = new1
+        value=''
+        for index, char in enumerate(hidden_text):
+            if not(hidden_text[index] == " " and hidden_text[index + 1]) == " ":
+              value = value + char
         params = {'key':value,'chk':'box'}
         return render(request, 'analyze.html', params)
     

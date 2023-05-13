@@ -71,27 +71,28 @@
   display: flex;
   justify-content: center;
 ">
-    <form action="/login" method="get">
+    <form action="/login" method="post"> {% csrf_token %}
       <textarea name="text" placeholder="Write here..." rows="9" style="width: 644px; height: 179px;"></textarea><br>
       <div class="custom-control custom-switch">
         <input type="checkbox" name="check" class="custom-control-input" id="customSwitch">
         <label class="custom-control-label" for="customSwitch">Remove Punctuations</label>
       </div>
-      <!-- <div class="custom-control custom-switch"> -->
-      <!-- <input type="checkbox" name="check1" class="custom-control-input" id="customSwitch1">
-        <label class="custom-control-label" for="customSwitch1">error</label>
-      </div> -->
+      <div class="custom-control custom-switch">
+        <input type="checkbox" name="check1" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">Remove extra lines</label>
+      </div>
+     
       <div class="custom-control custom-switch">
         <input type="checkbox" name="check2" class="custom-control-input" id="customSwitch2">
-        <label class="custom-control-label" for="customSwitch2">capitalize</label>
+        <label class="custom-control-label" for="customSwitch2">Capitalize</label>
       </div>
       <div class="custom-control custom-switch">
         <input type="checkbox" name="check3" class="custom-control-input" id="customSwitch3">
-        <label class="custom-control-label" for="customSwitch3">remove spaces</label>
+        <label class="custom-control-label" for="customSwitch3">Remove Extra Spaces</label>
       </div>
       <div class="custom-control custom-switch">
         <input type="checkbox" name="check4" class="custom-control-input" id="customSwitch4">
-        <label class="custom-control-label" for="customSwitch4">char_count</label>
+        <label class="custom-control-label" for="customSwitch4">Char_Count</label>
       </div>
       <div style="position: relative;top: 24px;">
         <button type="submit" class="btn btn-secondary" style="padding: 0px 0px;">Submit</button>
