@@ -15,11 +15,11 @@ def about(request):
     return render(request, "prac.html")
 
 def login(request):
-    punctuation= '''~`#,^*-{]'."/\?'''
+    punctuation= '''~`#,^*-{]'."/\?:\=-)(*&%$#@!~_+|\?><,.:"{}[]);'''
     hidden_text=request.GET.get('text', 'default')
 
     tick = request.GET.get('check', 'off')
-    tick1 = request.GET.get('check1', 'off')
+    # tick1 = request.GET.get('check1', 'off')
     tick2 = request.GET.get('check2', 'off')
     tick3 = request.GET.get('check3', 'off')
     tick4 = request.GET.get('check4', 'off')
@@ -29,6 +29,7 @@ def login(request):
             if char not in punctuation:
                 value = value + char
         params = {'key':value,'chk':'box'}
+        return render(request, 'analyze.html', params)
        
     # if tick1 == 'on': 
     #     value=''
@@ -39,15 +40,13 @@ def login(request):
     #     return render(request, 'analyze.html', params)
     
     if tick2 == 'on': 
-        new = ''
-        for v in value:
-            new= new + v.upper()
-        value = new
-        
+        value=''
+        for char in hidden_text:
+            value= value + char.upper()
         # for char2 in value:
         #         value = value + char2.upper()
         params = {'key':value,'chk':'box'}
-        # return render(request, 'analyze.html', params)
+        return render(request, 'analyze.html', params)
     
     if tick3 == 'on': 
         new1 = ''
@@ -56,10 +55,10 @@ def login(request):
               new1 = new1 + k
         value = new1
         params = {'key':value,'chk':'box'}
-        # return render(request, 'analyze.html', params)
+        return render(request, 'analyze.html', params)
     
     if tick4 == 'on': 
-        value=len(value)
+        value=len(hidden_text)
         params = {'key':value,'chk':'box'}
         return render(request, 'analyze.html', params)
 
