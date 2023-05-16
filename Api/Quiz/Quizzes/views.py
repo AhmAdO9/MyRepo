@@ -15,7 +15,7 @@ def create(request):
     return Response(serialized.data)
 
 
-@api_view()
+@api_view(['GET'])
 def list_all(request):
     data = CreateQuiz.objects.all()
     serializer = CreateQuizSerializer(data, many=True)
