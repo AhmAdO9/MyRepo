@@ -16,11 +16,13 @@ def create(request):
 
 
 @api_view(['GET'])
-def list_all(request):
-    data = CreateQuiz.objects.all()
-    serializer = CreateQuizSerializer(data, many=True)
-    return Response(serializer.data)
-
+def list_all(request,id):
+    try:   
+        data = CreateQuiz.objects.get(id=id)
+        serializer = CreateQuizSerializer(data)
+        return Response(serializer.data)
+    except Exception as e:
+         return Response({"invalid"})
 
 @api_view(['GET'])
 def Result(request, id):
