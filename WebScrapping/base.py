@@ -3,7 +3,7 @@ import requests
 
 
 payload = {'api_key':'fad18a2d9c10564534e0108b6df31366',
-           'url':'https://www.amazon.in/s?k=cd+player&sprefix=cd%2Caps%2C526&ref=nb_sb_ss_ts-doa-p_2_2'}
+           'url':'https://www.amazon.in/s?k=metal+detector&crid=2HD3JR6WL3X63&sprefix=metal+detector%2Caps%2C395&ref=nb_sb_noss_1'}
 # HEADERS = ({})
 response = requests.get("http://api.scraperapi.com", params=payload)
 soup = BeautifulSoup(response.text, "html.parser")
@@ -16,7 +16,7 @@ for b in Descrp:
 
 data = soup.select('a[class="a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal"]')
 
-data1 = soup.select('span[class="a-size-medium a-color-base a-text-normal"]')
+data1 = soup.select('span[class="a-size-base-plus a-color-base a-text-normal"]')
 container=[]
 for content in data1:
     container.append(content.text)
@@ -40,7 +40,7 @@ for review in data4:
     reviews.append(review.text) 
 
 
-file = open('amazon10.csv', 'w',  encoding="utf-8")
+file = open('amazon17.csv', 'w',  encoding="utf-8")
 for d in data:
 
     for elem in container:
