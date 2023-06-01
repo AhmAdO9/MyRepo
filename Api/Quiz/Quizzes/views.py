@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from .serializers import *
+from rest_framework import generics
 from rest_framework.response import Response
 from .models import CreateQuiz
 import time
@@ -57,5 +58,19 @@ def participate(request):
         return Response({"status":404, "error":serialized.errors})
     serialized.save()
     return Response({"message":"Done!"})
+         
+
+# class Register(generics.ListAPIView, generics.UpdateAPIView):
+#     queryset= CreateQuiz.objects.all()
+#     serializer_class = CreateQuizSerializer
+#     lookup_field= 'id'
     
 
+@api_view(['PATCH'])
+def update(request, id):
+    user= CreateQuiz.objects.get(id= id)
+    serializer = CreateQuizSerializer(user, request.data, partial = True)
+    if not serializer.is_valid():
+        return Response("Fuckkkkkkkkkk")
+    serializer.save()
+    return Response(serializer.data)

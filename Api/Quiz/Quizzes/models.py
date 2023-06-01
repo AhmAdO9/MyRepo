@@ -16,7 +16,7 @@ class CreateQuiz(models.Model):
 
 
     def __str__(self):
-             return str(self.Answers)
+             return str(self.title)
 
 
 
