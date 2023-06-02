@@ -38,7 +38,7 @@ def get1(request):
     # jar8 = []
 
     for k1 in detail:
-        if  not (k1.end_year and k1.intensity and k1.start_year and k1.relevance and k1.likelihood and k1.topic and k1.country and  k1.region == ""):
+        if  not (k1.end_year == '' or k1.intensity == '' or k1.start_year == '' or k1.relevance == '' or k1.likelihood == '' or k1.topic == '' or k1.country == '' or  k1.region == ""):
             # jar1.append(k1.start_year)
             # jar7.append(f"{k1.country}/{k1.end_year}")
             # jar7.append(k1.end_year)
