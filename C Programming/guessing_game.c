@@ -14,11 +14,11 @@ int main()
         scanf("%d", &n);
         if (n < number)
         {
-            printf("a little higher");
+            printf("a little higher\n");
         }
         else if (n > number)
         {
-            printf("a little lower");
+            printf("a little lower\n");
         }
         else if (n == number)
         {
