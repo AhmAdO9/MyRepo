@@ -1,458 +1,1290 @@
 <html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-  <style>
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: darkslateblue;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  #main {
-    transition: margin-left .5s;
-    padding: 16px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-
-    * {
-      margin: 0;
-      padding: 0;
-    }
-
-    .canvas1 {
-      /* border: 22px solid #6363a9; */
-      display: inline-flex;
-      position: relative;
-      right: -142px;
-      width: 41em;
-      position: relative;
-      top: 3em;
-      background-color: lavender;
-      border-radius: 18px;
-    }
-
-
-
-    .canvas2 {
-      /* border: 22px solid #6363a9; */
-      display: inline-flex;
-      position: relative;
-      right: -142px;
-      width: 41em;
-      position: relative;
-      top: 3em;
-      right: -30em;
-      background-color: lavender;
-      border-radius: 18px;
-    }
-
-
-
-    .canvas3 {
-      /* border: 22px solid #6363a9; */
-      display: inline-flex;
-      position: relative;
-      right: -142px;
-      width: 41em;
-      position: relative;
-      top: 29em;
-      right: 41em;
-      background-color: lavender;
-      border-radius: 18px;
-    }
-
-
-
-
-
-
-
-    .bigcanvas {
-      display: flex;
-      grid-column: auto auto;
-      grid-template-columns: auto auto;
-      column-gap: 64px;
-      row-gap: 45px;
-      background: white;
-      height: 100vh;
-      /* width:100vw; */
-    }
-
-
-
-
-    nav {
-      display: flex;
-      height: 76px;
-      background-color: darkslateblue;
-
-    }
-
-    .search input {
-      width: 45vw;
-      height: 30px;
-      border-radius: 5px;
-      right: -267px;
-
-    }
-
-    .search {
-      display: flex;
-      width: 45vw;
-      height: 30px;
-      border-radius: 5px;
-      justify-content: center;
-
-      position: relative;
-      right: -253px;
-      top: 22px;
-    }
-
-    .logo {
-      display: flex;
-      height: 62px;
-      position: relative;
-      right: -12px;
-      top: 6px;
-
-    }
-
-
-
-    .btn {
-      display: flex;
-      font-family: 'Lato', sans-serif;
-      font-weight: 900;
-      height: 25px;
-      width: 65px;
-      position: relative;
-      top: 25px;
-      background-color: white;
-      color: darkslateblue;
-
-      right: -262px;
-      border-radius: 4px;
-
-
-
-    }
-
-
-    .vuexy a {
-
-      position: relative;
-      right: -29px;
-      top: 12px;
-      font-size: 44px;
-      margin: 0;
-      padding: 0;
-      color: white;
-      text-decoration: none;
-    }
-
-
-    @media screen and (max-width: 1000px) {
-
-      nav {
-        flex-direction: column;
-        height: 204px;
-        align-items: center;
+    <style>
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: darkslateblue;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
       }
 
-      .btn {
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      #main {
+        transition: margin-left 0.5s;
+        padding: 16px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .canvas1 {
+        /* border: 22px solid #6363a9; */
+        display: inline-flex;
         position: relative;
-        align-self: center;
-        right: -1em;
-      }
-
-      .search {
-        align-self: center;
+        right: -142px;
+        width: 41em;
         position: relative;
-        right: -1em;
-        top: 17px;
-
-
+        top: 3em;
+        background-color: lavender;
+        border-radius: 18px;
       }
 
-      .logo {
-        align-self: center;
-      }
-
-      .vuexy {
-        display: flex;
-        align-self: center;
+      .canvas2 {
+        /* border: 22px solid #6363a9; */
+        display: inline-flex;
         position: relative;
-        right: 0;
+        right: -142px;
+        width: 41em;
+        position: relative;
+        top: 3em;
+        right: -30em;
+        background-color: lavender;
+        border-radius: 18px;
+      }
 
+      .canvas3 {
+        /* border: 22px solid #6363a9; */
+        display: inline-flex;
+        position: relative;
+        right: -142px;
+        width: 41em;
+        position: relative;
+        top: 29em;
+        right: 41em;
+        background-color: lavender;
+        border-radius: 18px;
       }
 
       .bigcanvas {
         display: flex;
-        flex-wrap: wrap;
-        height: 1600;
-        flex-direction: column;
+        grid-column: auto auto;
+        grid-template-columns: auto auto;
+        column-gap: 64px;
+        row-gap: 45px;
+        background: white;
+        height: 100vh;
+        /* width:100vw; */
+      }
+
+      nav {
+        display: flex;
+        height: 76px;
+        background-color: darkslateblue;
+      }
+
+      .search input {
+        width: 45vw;
+        height: 30px;
+        border-radius: 5px;
+        right: -267px;
+      }
+
+      .search {
+        display: flex;
+        width: 45vw;
+        height: 30px;
+        border-radius: 5px;
+        justify-content: center;
+
+        position: relative;
+        right: -253px;
+        top: 22px;
+      }
+
+      .logo {
+        display: flex;
+        height: 62px;
+        position: relative;
+        right: -12px;
+        top: 6px;
+      }
+
+      .btn {
+        display: flex;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        height: 25px;
+        width: 65px;
+        position: relative;
+        top: 25px;
+        background-color: white;
+        color: darkslateblue;
+
+        right: -262px;
+        border-radius: 4px;
+      }
+
+      .vuexy a {
+        position: relative;
+        right: -29px;
+        top: 12px;
+        font-size: 44px;
+        margin: 0;
+        padding: 0;
+        color: white;
+        text-decoration: none;
+      }
+
+      @media screen and (max-width: 1000px) {
+        nav {
+          flex-direction: column;
+          height: 204px;
+          align-items: center;
+        }
+
+        .btn {
+          position: relative;
+          align-self: center;
+          right: -1em;
+        }
+
+        .search {
+          align-self: center;
+          position: relative;
+          right: -1em;
+          top: 17px;
+        }
+
+        .logo {
+          align-self: center;
+        }
+
+        .vuexy {
+          display: flex;
+          align-self: center;
+          position: relative;
+          right: 0;
+        }
+
+        .bigcanvas {
+          display: flex;
+          flex-wrap: wrap;
+          height: 1600;
+          flex-direction: column;
+        }
+
+        .canvas1 {
+          position: relative;
+          right: 0;
+          align-self: center;
+        }
+
+        .canvas2 {
+          position: relative;
+          right: 0;
+          align-self: center;
+        }
+
+        .canvas3 {
+          position: relative;
+          right: 0;
+          align-self: center;
+          top: 3em;
+        }
+      }
+
+      .canvas1:hover {
+        width: 200;
+        height: 200;
       }
 
       .canvas1 {
-        position: relative;
-        right: 0;
-        align-self:center ;
+        width: 41em;
+        height: 20em;
+        opacity: 1;
+        transition-property: width, height, opacity;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+      }
+
+      .canvas2:hover {
+        width: 200;
+        height: 200;
       }
 
       .canvas2 {
-        position: relative;
-        right: 0;
-        align-self: center;
+        width: 41em;
+        height: 20em;
+        transition-property: width, height;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+      }
+
+      .canvas3:hover {
+        width: 200;
+        height: 200;
       }
 
       .canvas3 {
-        position: relative;
-        right: 0;
-        align-self: center;
-        top: 3em;
+        width: 41em;
+        height: 20em;
+        transition-property: width, height;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
       }
 
-    }
+      .vuexy:hover {
+        font-weight: bolder;
+      }
 
+      button:hover {
+        font-weight: bolder;
+      }
+    </style>
+  </head>
 
-
-
-    .canvas1:hover {
-      width: 200;
-      height: 200;
-
-    }
-
-    .canvas1 {
-      width: 41em;
-      height: 20em;
-      opacity: 1;
-      transition-property: width, height, opacity;
-      transition-duration: .5s;
-      transition-timing-function: ease-in;
-
-    }
-
-    .canvas2:hover {
-      width: 200;
-      height: 200;
-
-
-    }
-
-    .canvas2 {
-      width: 41em;
-      height: 20em;
-      transition-property: width, height;
-      transition-duration: .5s;
-      transition-timing-function: ease-in;
-    }
-
-    .canvas3:hover {
-      width: 200;
-      height: 200;
-
-    }
-
-    .canvas3 {
-      width: 41em;
-      height: 20em;
-      transition-property: width, height;
-      transition-duration: .5s;
-      transition-timing-function: ease-in;
-    }
-
-    .vuexy:hover {
-      font-weight: bolder;
-    }
-
-    button:hover {
-      font-weight: bolder
-    }
-  </style>
-</head>
-
-
-<body>
-
-  <nav>
-    <div class="logo">
-      <img src="https://demos.pixinvent.com/vuexy-vuejs-admin-template/landing/img/bg-img/logo.png">
+  <body>
+    <nav>
+      <div class="logo">
+        <img
+          src="https://demos.pixinvent.com/vuexy-vuejs-admin-template/landing/img/bg-img/logo.png"
+        />
+      </div>
+      <div class="vuexy"><a href="">Vuexy</a></div>
+      <div class="search">
+        <input type="text" name="cake" id="doremon" placeholder="Search Here" />
+      </div>
+      <button class="btn">Search</button>
+    </nav>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
     </div>
-    <div class="vuexy"><a href="">Vuexy</a>
 
+    <div id="main">
+      <span
+        style="font-size: 30px; cursor: pointer; color: darkslateblue"
+        onclick="openNav()"
+        >&#9776;
+      </span>
     </div>
-    <div class="search"><input type="text" name="cake" id="doremon" placeholder="Search Here"></div>
-    <button class="btn">Search</button>
-  </nav>
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
-  </div>
-  
-  <div id="main">
-    <span style="font-size:30px;cursor:pointer;color: darkslateblue;" onclick="openNav()">&#9776; </span>
-  </div>
-  
-  <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-  }
-  </script>
-     
-  <div class="bigcanvas">
-    <div class="canvas1">
 
-      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
 
-      <script>
-        var xValues =
-          ['Nigeria/2018', 'United States of America/2200', 'United States of America/2018', 'United States of America/2019', 'United States of America/2019', 'United States of America/2019', 'United States of America/2018', 'United States of America/2019', 'United States of America/2020', 'United States of America/2019', 'United States of America/2018', 'United States of America/2018', 'United States of America/2020', 'Libya/2019', 'United States of America/2018', 'India/2018', 'United States of America/2017', 'Iran/2018', 'China/2017', 'Russia/2017', 'Saudi Arabia/2017', 'Russia/2019', 'United States of America/2017', 'India/2017', 'United States of America/2017', 'United States of America/2030', 'India/2017']
-          ;
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
 
-        var yValues = [16, 24, 16, 16, 16, 16, 16, 20, 16, 16, 16, 20, 16, 16, 14, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 8, 6];
+    <div class="bigcanvas">
+      <div class="canvas1">
+        <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
 
-        var barColors = ['#0048BA\n', '#B0BF1A\n', '#7CB9E8\n', '#B284BE\n', '#72A0C1\n', '#F0F8FF\n', '#DB2D43\n', '#C46210\n', '#EFDECD\n', '#9F2B68\n', '#F19CBB\n', '#AB274F\n', '#3B7A57\n', '#FFBF00\n', '#9966CC\n', '#3DDC84\n', '#CD9575\n', '#665D1E\n', '#915C83\n', '#841B2D\n', '#FAEBD7\n', '#FBCEB1\n', '#00FFFF\n', '#7FFFD4\n', '#D0FF14\n', '#4B6F44\n', '#E9D66B\n', '#B2BEB5\n', '#FF9966\n', '#FDEE00\n', '#007FFF\n', '#F0FFFF\n', '#89CFF0\n', '#A1CAF1\n', '#F4C2C2\n', '#FEFEFA\n', '#FF91AF\n', '#FAE7B5\n', '#DA1884\n', '#7C0A02\n', '#848482\n', '#BCD4E6\n', '#9F8170\n', '#F5F5DC\n', '#2E5894\n', '#9C2542\n', '#FFE4C4\n', '#3D2B1F\n', '#967117\n', '#CAE00D\n', '#000000\n', '#3D0C02\n', '#54626F\n', '#3B3C36\n', '#BFAFB2\n', '#FFEBCD\n', '#A57164\n', '#318CE7\n', '#ACE5EE\n', '#660000\n', '#0000FF\n', '#1F75FE\n', '#0093AF\n', '#0087BD\n', '#0018A8\n', '#333399\n', '#A2A2D0\n', '#6699CC\n', '#5DADEC\n', '#126180\n', '#8A2BE2\n', '#5072A7\n', '#3C69E7\n', '#DE5D83\n', '#79443B\n', '#E3DAC9\n', '#CB4154\n', '#D891EF\n', '#FFAA1D\n', '#CD7F32\n', '#AF6E4D\n', '#7BB661\n', '#FFC680\n', '#800020\n', '#DEB887\n', '#A17A74\n', '#CC5500\n', '#E97451\n', '#8A3324\n', '#BD33A4\n', '#702963\n', '#5F9EA0\n', '#91A3B0\n', '#006B3C\n', '#ED872D\n', '#A67B5B\n', '#4B3621\n', '#A3C1AD\n', '#C19A6B\n', '#EFBBCC\n', '#FFFF99\n', '#FFEF00\n', '#E4717A\n', '#C41E3A\n', '#00CC99\n', '#960018\n', '#D70040\n', '#FFA6C9\n', '#B31B1B\n', '#56A0D3\n', '#ED9121\n', '#703642\n', '#C95A49\n', '#ACE1AF\n', '#B2FFFF\n', '#DE3163\n', '#007BA7\n', '#2A52BE\n', '#6D9BC3\n', '#1DACD6\n', '#F7E7CE\n', '#F1DDCF\n', '#36454F\n', '#E68FAC\n', '#80FF00\n', '#FFB7C5\n', '#954535\n', '#E23D28\n', '#DE6FA1\n', '#AA381E\n', '#856088\n', '#FFB200\n', '#7B3F00\n', '#D2691E\n', '#98817B\n', '#E34234\n', '#CD607E\n', '#E4D00A\n', '#9FA91F\n', '#7F1734\n', '#6F4E37\n', '#B9D9EB\n', '#F88379\n', '#8C92AC\n', '#B87333\n', '#DA8A67\n', '#AD6F69\n', '#CB6D51\n', '#996666\n', '#FF3800\n', '#FF7F50\n', '#F88379\n', '#893F45\n', '#FBEC5D\n', '#6495ED\n', '#FFF8DC\n', '#2E2D88\n', '#FFF8E7\n', '#81613C\n', '#FFBCD9\n', '#FFFDD0\n', '#DC143C\n', '#9E1B32\n', '#F5F5F5\n', '#00FFFF\n', '#00B7EB\n', '#58427C\n', '#FFD300\n', '#F56FA1\n', '#654321\n', '#5D3954\n', '#008B8B\n', '#536878\n', '#B8860B\n', '#006400\n', '#1A2421\n', '#BDB76B\n', '#483C32\n', '#543D37\n', '#8B008B\n', '#556B2F\n', '#FF8C00\n', '#9932CC\n', '#301934\n', '#8B0000\n', '#E9967A\n', '#8FBC8F\n', '#3C1414\n', '#8CBED6\n', '#483D8B\n', '#2F4F4F\n', '#177245\n', '#00CED1\n', '#9400D3\n', '#555555\n', '#DA3287\n', '#FAD6A5\n', '#B94E48\n', '#004B49\n', '#FF1493\n', '#FF9933\n', '#00BFFF\n', '#4A646C\n', '#7E5E60\n', '#1560BD\n', '#2243B6\n', '#C19A6B\n', '#EDC9AF\n', '#696969\n', '#1E90FF\n', '#4A412A\n', '#00009C\n', '#EFDFBB\n', '#555D50\n', '#C2B280\n', '#1B1B1B\n', '#614051\n', '#F0EAD6\n', '#CCFF00\n', '#BF00FF\n', '#8F00FF\n', '#50C878\n', '#6C3082\n', '#B48395\n', '#AB4B52\n', '#CC474B\n', '#563C5C\n', '#00FF40\n', '#96C8A2\n', '#C19A6B\n', '#801818\n', '#B53389\n', '#DE5285\n', '#E5AA70\n', '#4F7942\n', '#6C541E\n', '#FF5470\n', '#683068\n', '#B22222\n', '#CE2029\n', '#E25822\n', '#EEDC82\n', '#A2006D\n', '#FFFAF0\n', '#228B22\n', '#A67B5B\n', '#856D4D\n', '#0072BB\n', '#FD3F92\n', '#86608E\n', '#9EFD38\n', '#D473D4\n', '#FD6C9E\n', '#C72C48\n', '#77B5FE\n', '#8806CE\n', '#E936A7\n', '#FF00FF\n', '#C154C1\n', '#E48400\n', '#87421F\n']
-        f = []
-        new Chart("myChart", {
-          type: "bar",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-          },
-          options: {
-            legend: { display: false },
-            title: {
-              display: true,
-              text: "Intensity"
-            }
-          }
-        });
+        <script>
+          var xValues = [
+            "Nigeria/2018",
+            "United States of America/2200",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2020",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2018",
+            "United States of America/2020",
+            "Libya/2019",
+            "United States of America/2018",
+            "India/2018",
+            "United States of America/2017",
+            "Iran/2018",
+            "China/2017",
+            "Russia/2017",
+            "Saudi Arabia/2017",
+            "Russia/2019",
+            "United States of America/2017",
+            "India/2017",
+            "United States of America/2017",
+            "United States of America/2030",
+            "India/2017",
+          ];
+          var yValues = [
+            16, 24, 16, 16, 16, 16, 16, 20, 16, 16, 16, 20, 16, 16, 14, 16, 16,
+            16, 16, 16, 16, 16, 16, 16, 16, 8, 6,
+          ];
 
-      </script>
+          var barColors = [
+            "#0048BA\n",
+            "#B0BF1A\n",
+            "#7CB9E8\n",
+            "#B284BE\n",
+            "#72A0C1\n",
+            "#F0F8FF\n",
+            "#DB2D43\n",
+            "#C46210\n",
+            "#EFDECD\n",
+            "#9F2B68\n",
+            "#F19CBB\n",
+            "#AB274F\n",
+            "#3B7A57\n",
+            "#FFBF00\n",
+            "#9966CC\n",
+            "#3DDC84\n",
+            "#CD9575\n",
+            "#665D1E\n",
+            "#915C83\n",
+            "#841B2D\n",
+            "#FAEBD7\n",
+            "#FBCEB1\n",
+            "#00FFFF\n",
+            "#7FFFD4\n",
+            "#D0FF14\n",
+            "#4B6F44\n",
+            "#E9D66B\n",
+            "#B2BEB5\n",
+            "#FF9966\n",
+            "#FDEE00\n",
+            "#007FFF\n",
+            "#F0FFFF\n",
+            "#89CFF0\n",
+            "#A1CAF1\n",
+            "#F4C2C2\n",
+            "#FEFEFA\n",
+            "#FF91AF\n",
+            "#FAE7B5\n",
+            "#DA1884\n",
+            "#7C0A02\n",
+            "#848482\n",
+            "#BCD4E6\n",
+            "#9F8170\n",
+            "#F5F5DC\n",
+            "#2E5894\n",
+            "#9C2542\n",
+            "#FFE4C4\n",
+            "#3D2B1F\n",
+            "#967117\n",
+            "#CAE00D\n",
+            "#000000\n",
+            "#3D0C02\n",
+            "#54626F\n",
+            "#3B3C36\n",
+            "#BFAFB2\n",
+            "#FFEBCD\n",
+            "#A57164\n",
+            "#318CE7\n",
+            "#ACE5EE\n",
+            "#660000\n",
+            "#0000FF\n",
+            "#1F75FE\n",
+            "#0093AF\n",
+            "#0087BD\n",
+            "#0018A8\n",
+            "#333399\n",
+            "#A2A2D0\n",
+            "#6699CC\n",
+            "#5DADEC\n",
+            "#126180\n",
+            "#8A2BE2\n",
+            "#5072A7\n",
+            "#3C69E7\n",
+            "#DE5D83\n",
+            "#79443B\n",
+            "#E3DAC9\n",
+            "#CB4154\n",
+            "#D891EF\n",
+            "#FFAA1D\n",
+            "#CD7F32\n",
+            "#AF6E4D\n",
+            "#7BB661\n",
+            "#FFC680\n",
+            "#800020\n",
+            "#DEB887\n",
+            "#A17A74\n",
+            "#CC5500\n",
+            "#E97451\n",
+            "#8A3324\n",
+            "#BD33A4\n",
+            "#702963\n",
+            "#5F9EA0\n",
+            "#91A3B0\n",
+            "#006B3C\n",
+            "#ED872D\n",
+            "#A67B5B\n",
+            "#4B3621\n",
+            "#A3C1AD\n",
+            "#C19A6B\n",
+            "#EFBBCC\n",
+            "#FFFF99\n",
+            "#FFEF00\n",
+            "#E4717A\n",
+            "#C41E3A\n",
+            "#00CC99\n",
+            "#960018\n",
+            "#D70040\n",
+            "#FFA6C9\n",
+            "#B31B1B\n",
+            "#56A0D3\n",
+            "#ED9121\n",
+            "#703642\n",
+            "#C95A49\n",
+            "#ACE1AF\n",
+            "#B2FFFF\n",
+            "#DE3163\n",
+            "#007BA7\n",
+            "#2A52BE\n",
+            "#6D9BC3\n",
+            "#1DACD6\n",
+            "#F7E7CE\n",
+            "#F1DDCF\n",
+            "#36454F\n",
+            "#E68FAC\n",
+            "#80FF00\n",
+            "#FFB7C5\n",
+            "#954535\n",
+            "#E23D28\n",
+            "#DE6FA1\n",
+            "#AA381E\n",
+            "#856088\n",
+            "#FFB200\n",
+            "#7B3F00\n",
+            "#D2691E\n",
+            "#98817B\n",
+            "#E34234\n",
+            "#CD607E\n",
+            "#E4D00A\n",
+            "#9FA91F\n",
+            "#7F1734\n",
+            "#6F4E37\n",
+            "#B9D9EB\n",
+            "#F88379\n",
+            "#8C92AC\n",
+            "#B87333\n",
+            "#DA8A67\n",
+            "#AD6F69\n",
+            "#CB6D51\n",
+            "#996666\n",
+            "#FF3800\n",
+            "#FF7F50\n",
+            "#F88379\n",
+            "#893F45\n",
+            "#FBEC5D\n",
+            "#6495ED\n",
+            "#FFF8DC\n",
+            "#2E2D88\n",
+            "#FFF8E7\n",
+            "#81613C\n",
+            "#FFBCD9\n",
+            "#FFFDD0\n",
+            "#DC143C\n",
+            "#9E1B32\n",
+            "#F5F5F5\n",
+            "#00FFFF\n",
+            "#00B7EB\n",
+            "#58427C\n",
+            "#FFD300\n",
+            "#F56FA1\n",
+            "#654321\n",
+            "#5D3954\n",
+            "#008B8B\n",
+            "#536878\n",
+            "#B8860B\n",
+            "#006400\n",
+            "#1A2421\n",
+            "#BDB76B\n",
+            "#483C32\n",
+            "#543D37\n",
+            "#8B008B\n",
+            "#556B2F\n",
+            "#FF8C00\n",
+            "#9932CC\n",
+            "#301934\n",
+            "#8B0000\n",
+            "#E9967A\n",
+            "#8FBC8F\n",
+            "#3C1414\n",
+            "#8CBED6\n",
+            "#483D8B\n",
+            "#2F4F4F\n",
+            "#177245\n",
+            "#00CED1\n",
+            "#9400D3\n",
+            "#555555\n",
+            "#DA3287\n",
+            "#FAD6A5\n",
+            "#B94E48\n",
+            "#004B49\n",
+            "#FF1493\n",
+            "#FF9933\n",
+            "#00BFFF\n",
+            "#4A646C\n",
+            "#7E5E60\n",
+            "#1560BD\n",
+            "#2243B6\n",
+            "#C19A6B\n",
+            "#EDC9AF\n",
+            "#696969\n",
+            "#1E90FF\n",
+            "#4A412A\n",
+            "#00009C\n",
+            "#EFDFBB\n",
+            "#555D50\n",
+            "#C2B280\n",
+            "#1B1B1B\n",
+            "#614051\n",
+            "#F0EAD6\n",
+            "#CCFF00\n",
+            "#BF00FF\n",
+            "#8F00FF\n",
+            "#50C878\n",
+            "#6C3082\n",
+            "#B48395\n",
+            "#AB4B52\n",
+            "#CC474B\n",
+            "#563C5C\n",
+            "#00FF40\n",
+            "#96C8A2\n",
+            "#C19A6B\n",
+            "#801818\n",
+            "#B53389\n",
+            "#DE5285\n",
+            "#E5AA70\n",
+            "#4F7942\n",
+            "#6C541E\n",
+            "#FF5470\n",
+            "#683068\n",
+            "#B22222\n",
+            "#CE2029\n",
+            "#E25822\n",
+            "#EEDC82\n",
+            "#A2006D\n",
+            "#FFFAF0\n",
+            "#228B22\n",
+            "#A67B5B\n",
+            "#856D4D\n",
+            "#0072BB\n",
+            "#FD3F92\n",
+            "#86608E\n",
+            "#9EFD38\n",
+            "#D473D4\n",
+            "#FD6C9E\n",
+            "#C72C48\n",
+            "#77B5FE\n",
+            "#8806CE\n",
+            "#E936A7\n",
+            "#FF00FF\n",
+            "#C154C1\n",
+            "#E48400\n",
+            "#87421F\n",
+          ];
+          f = [];
+          new Chart("myChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [
+                {
+                  backgroundColor: barColors,
+                  data: yValues,
+                },
+              ],
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: "Intensity",
+              },
+            },
+          });
+        </script>
+      </div>
+      <div class="canvas2">
+        <canvas id="myChart1" style="width: 100%; max-width: 600px"></canvas>
 
+        <script>
+          var xValues = [
+            "Nigeria/2018",
+            "United States of America/2200",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2020",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2018",
+            "United States of America/2020",
+            "Libya/2019",
+            "United States of America/2018",
+            "India/2018",
+            "United States of America/2017",
+            "Iran/2018",
+            "China/2017",
+            "Russia/2017",
+            "Saudi Arabia/2017",
+            "Russia/2019",
+            "United States of America/2017",
+            "India/2017",
+            "United States of America/2017",
+            "United States of America/2030",
+            "India/2017",
+          ];
+          var yValues = [
+            4, 6, 4, 4, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 4,
+            4, 4, 4, 2,
+          ];
 
+          var barColors = [
+            "#0048BA\n",
+            "#B0BF1A\n",
+            "#7CB9E8\n",
+            "#B284BE\n",
+            "#72A0C1\n",
+            "#F0F8FF\n",
+            "#DB2D43\n",
+            "#C46210\n",
+            "#EFDECD\n",
+            "#9F2B68\n",
+            "#F19CBB\n",
+            "#AB274F\n",
+            "#3B7A57\n",
+            "#FFBF00\n",
+            "#9966CC\n",
+            "#3DDC84\n",
+            "#CD9575\n",
+            "#665D1E\n",
+            "#915C83\n",
+            "#841B2D\n",
+            "#FAEBD7\n",
+            "#FBCEB1\n",
+            "#00FFFF\n",
+            "#7FFFD4\n",
+            "#D0FF14\n",
+            "#4B6F44\n",
+            "#E9D66B\n",
+            "#B2BEB5\n",
+            "#FF9966\n",
+            "#FDEE00\n",
+            "#007FFF\n",
+            "#F0FFFF\n",
+            "#89CFF0\n",
+            "#A1CAF1\n",
+            "#F4C2C2\n",
+            "#FEFEFA\n",
+            "#FF91AF\n",
+            "#FAE7B5\n",
+            "#DA1884\n",
+            "#7C0A02\n",
+            "#848482\n",
+            "#BCD4E6\n",
+            "#9F8170\n",
+            "#F5F5DC\n",
+            "#2E5894\n",
+            "#9C2542\n",
+            "#FFE4C4\n",
+            "#3D2B1F\n",
+            "#967117\n",
+            "#CAE00D\n",
+            "#000000\n",
+            "#3D0C02\n",
+            "#54626F\n",
+            "#3B3C36\n",
+            "#BFAFB2\n",
+            "#FFEBCD\n",
+            "#A57164\n",
+            "#318CE7\n",
+            "#ACE5EE\n",
+            "#660000\n",
+            "#0000FF\n",
+            "#1F75FE\n",
+            "#0093AF\n",
+            "#0087BD\n",
+            "#0018A8\n",
+            "#333399\n",
+            "#A2A2D0\n",
+            "#6699CC\n",
+            "#5DADEC\n",
+            "#126180\n",
+            "#8A2BE2\n",
+            "#5072A7\n",
+            "#3C69E7\n",
+            "#DE5D83\n",
+            "#79443B\n",
+            "#E3DAC9\n",
+            "#CB4154\n",
+            "#D891EF\n",
+            "#FFAA1D\n",
+            "#CD7F32\n",
+            "#AF6E4D\n",
+            "#7BB661\n",
+            "#FFC680\n",
+            "#800020\n",
+            "#DEB887\n",
+            "#A17A74\n",
+            "#CC5500\n",
+            "#E97451\n",
+            "#8A3324\n",
+            "#BD33A4\n",
+            "#702963\n",
+            "#5F9EA0\n",
+            "#91A3B0\n",
+            "#006B3C\n",
+            "#ED872D\n",
+            "#A67B5B\n",
+            "#4B3621\n",
+            "#A3C1AD\n",
+            "#C19A6B\n",
+            "#EFBBCC\n",
+            "#FFFF99\n",
+            "#FFEF00\n",
+            "#E4717A\n",
+            "#C41E3A\n",
+            "#00CC99\n",
+            "#960018\n",
+            "#D70040\n",
+            "#FFA6C9\n",
+            "#B31B1B\n",
+            "#56A0D3\n",
+            "#ED9121\n",
+            "#703642\n",
+            "#C95A49\n",
+            "#ACE1AF\n",
+            "#B2FFFF\n",
+            "#DE3163\n",
+            "#007BA7\n",
+            "#2A52BE\n",
+            "#6D9BC3\n",
+            "#1DACD6\n",
+            "#F7E7CE\n",
+            "#F1DDCF\n",
+            "#36454F\n",
+            "#E68FAC\n",
+            "#80FF00\n",
+            "#FFB7C5\n",
+            "#954535\n",
+            "#E23D28\n",
+            "#DE6FA1\n",
+            "#AA381E\n",
+            "#856088\n",
+            "#FFB200\n",
+            "#7B3F00\n",
+            "#D2691E\n",
+            "#98817B\n",
+            "#E34234\n",
+            "#CD607E\n",
+            "#E4D00A\n",
+            "#9FA91F\n",
+            "#7F1734\n",
+            "#6F4E37\n",
+            "#B9D9EB\n",
+            "#F88379\n",
+            "#8C92AC\n",
+            "#B87333\n",
+            "#DA8A67\n",
+            "#AD6F69\n",
+            "#CB6D51\n",
+            "#996666\n",
+            "#FF3800\n",
+            "#FF7F50\n",
+            "#F88379\n",
+            "#893F45\n",
+            "#FBEC5D\n",
+            "#6495ED\n",
+            "#FFF8DC\n",
+            "#2E2D88\n",
+            "#FFF8E7\n",
+            "#81613C\n",
+            "#FFBCD9\n",
+            "#FFFDD0\n",
+            "#DC143C\n",
+            "#9E1B32\n",
+            "#F5F5F5\n",
+            "#00FFFF\n",
+            "#00B7EB\n",
+            "#58427C\n",
+            "#FFD300\n",
+            "#F56FA1\n",
+            "#654321\n",
+            "#5D3954\n",
+            "#008B8B\n",
+            "#536878\n",
+            "#B8860B\n",
+            "#006400\n",
+            "#1A2421\n",
+            "#BDB76B\n",
+            "#483C32\n",
+            "#543D37\n",
+            "#8B008B\n",
+            "#556B2F\n",
+            "#FF8C00\n",
+            "#9932CC\n",
+            "#301934\n",
+            "#8B0000\n",
+            "#E9967A\n",
+            "#8FBC8F\n",
+            "#3C1414\n",
+            "#8CBED6\n",
+            "#483D8B\n",
+            "#2F4F4F\n",
+            "#177245\n",
+            "#00CED1\n",
+            "#9400D3\n",
+            "#555555\n",
+            "#DA3287\n",
+            "#FAD6A5\n",
+            "#B94E48\n",
+            "#004B49\n",
+            "#FF1493\n",
+            "#FF9933\n",
+            "#00BFFF\n",
+            "#4A646C\n",
+            "#7E5E60\n",
+            "#1560BD\n",
+            "#2243B6\n",
+            "#C19A6B\n",
+            "#EDC9AF\n",
+            "#696969\n",
+            "#1E90FF\n",
+            "#4A412A\n",
+            "#00009C\n",
+            "#EFDFBB\n",
+            "#555D50\n",
+            "#C2B280\n",
+            "#1B1B1B\n",
+            "#614051\n",
+            "#F0EAD6\n",
+            "#CCFF00\n",
+            "#BF00FF\n",
+            "#8F00FF\n",
+            "#50C878\n",
+            "#6C3082\n",
+            "#B48395\n",
+            "#AB4B52\n",
+            "#CC474B\n",
+            "#563C5C\n",
+            "#00FF40\n",
+            "#96C8A2\n",
+            "#C19A6B\n",
+            "#801818\n",
+            "#B53389\n",
+            "#DE5285\n",
+            "#E5AA70\n",
+            "#4F7942\n",
+            "#6C541E\n",
+            "#FF5470\n",
+            "#683068\n",
+            "#B22222\n",
+            "#CE2029\n",
+            "#E25822\n",
+            "#EEDC82\n",
+            "#A2006D\n",
+            "#FFFAF0\n",
+            "#228B22\n",
+            "#A67B5B\n",
+            "#856D4D\n",
+            "#0072BB\n",
+            "#FD3F92\n",
+            "#86608E\n",
+            "#9EFD38\n",
+            "#D473D4\n",
+            "#FD6C9E\n",
+            "#C72C48\n",
+            "#77B5FE\n",
+            "#8806CE\n",
+            "#E936A7\n",
+            "#FF00FF\n",
+            "#C154C1\n",
+            "#E48400\n",
+            "#87421F\n",
+          ];
+          f = [];
+          new Chart("myChart1", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [
+                {
+                  backgroundColor: barColors,
+                  data: yValues,
+                },
+              ],
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: "Relevance",
+              },
+            },
+          });
+        </script>
+      </div>
+      <div class="canvas3">
+        <canvas id="myChart2" style="width: 100%; max-width: 600px"></canvas>
+
+        <script>
+          var xValues = [
+            "Nigeria/2018",
+            "United States of America/2200",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2019",
+            "United States of America/2020",
+            "United States of America/2019",
+            "United States of America/2018",
+            "United States of America/2018",
+            "United States of America/2020",
+            "Libya/2019",
+            "United States of America/2018",
+            "India/2018",
+            "United States of America/2017",
+            "Iran/2018",
+            "China/2017",
+            "Russia/2017",
+            "Saudi Arabia/2017",
+            "Russia/2019",
+            "United States of America/2017",
+            "India/2017",
+            "United States of America/2017",
+            "United States of America/2030",
+            "India/2017",
+          ];
+          var yValues = [
+            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4,
+            4, 4, 2, 3,
+          ];
+
+          var barColors = [
+            "#0048BA\n",
+            "#B0BF1A\n",
+            "#7CB9E8\n",
+            "#B284BE\n",
+            "#72A0C1\n",
+            "#F0F8FF\n",
+            "#DB2D43\n",
+            "#C46210\n",
+            "#EFDECD\n",
+            "#9F2B68\n",
+            "#F19CBB\n",
+            "#AB274F\n",
+            "#3B7A57\n",
+            "#FFBF00\n",
+            "#9966CC\n",
+            "#3DDC84\n",
+            "#CD9575\n",
+            "#665D1E\n",
+            "#915C83\n",
+            "#841B2D\n",
+            "#FAEBD7\n",
+            "#FBCEB1\n",
+            "#00FFFF\n",
+            "#7FFFD4\n",
+            "#D0FF14\n",
+            "#4B6F44\n",
+            "#E9D66B\n",
+            "#B2BEB5\n",
+            "#FF9966\n",
+            "#FDEE00\n",
+            "#007FFF\n",
+            "#F0FFFF\n",
+            "#89CFF0\n",
+            "#A1CAF1\n",
+            "#F4C2C2\n",
+            "#FEFEFA\n",
+            "#FF91AF\n",
+            "#FAE7B5\n",
+            "#DA1884\n",
+            "#7C0A02\n",
+            "#848482\n",
+            "#BCD4E6\n",
+            "#9F8170\n",
+            "#F5F5DC\n",
+            "#2E5894\n",
+            "#9C2542\n",
+            "#FFE4C4\n",
+            "#3D2B1F\n",
+            "#967117\n",
+            "#CAE00D\n",
+            "#000000\n",
+            "#3D0C02\n",
+            "#54626F\n",
+            "#3B3C36\n",
+            "#BFAFB2\n",
+            "#FFEBCD\n",
+            "#A57164\n",
+            "#318CE7\n",
+            "#ACE5EE\n",
+            "#660000\n",
+            "#0000FF\n",
+            "#1F75FE\n",
+            "#0093AF\n",
+            "#0087BD\n",
+            "#0018A8\n",
+            "#333399\n",
+            "#A2A2D0\n",
+            "#6699CC\n",
+            "#5DADEC\n",
+            "#126180\n",
+            "#8A2BE2\n",
+            "#5072A7\n",
+            "#3C69E7\n",
+            "#DE5D83\n",
+            "#79443B\n",
+            "#E3DAC9\n",
+            "#CB4154\n",
+            "#D891EF\n",
+            "#FFAA1D\n",
+            "#CD7F32\n",
+            "#AF6E4D\n",
+            "#7BB661\n",
+            "#FFC680\n",
+            "#800020\n",
+            "#DEB887\n",
+            "#A17A74\n",
+            "#CC5500\n",
+            "#E97451\n",
+            "#8A3324\n",
+            "#BD33A4\n",
+            "#702963\n",
+            "#5F9EA0\n",
+            "#91A3B0\n",
+            "#006B3C\n",
+            "#ED872D\n",
+            "#A67B5B\n",
+            "#4B3621\n",
+            "#A3C1AD\n",
+            "#C19A6B\n",
+            "#EFBBCC\n",
+            "#FFFF99\n",
+            "#FFEF00\n",
+            "#E4717A\n",
+            "#C41E3A\n",
+            "#00CC99\n",
+            "#960018\n",
+            "#D70040\n",
+            "#FFA6C9\n",
+            "#B31B1B\n",
+            "#56A0D3\n",
+            "#ED9121\n",
+            "#703642\n",
+            "#C95A49\n",
+            "#ACE1AF\n",
+            "#B2FFFF\n",
+            "#DE3163\n",
+            "#007BA7\n",
+            "#2A52BE\n",
+            "#6D9BC3\n",
+            "#1DACD6\n",
+            "#F7E7CE\n",
+            "#F1DDCF\n",
+            "#36454F\n",
+            "#E68FAC\n",
+            "#80FF00\n",
+            "#FFB7C5\n",
+            "#954535\n",
+            "#E23D28\n",
+            "#DE6FA1\n",
+            "#AA381E\n",
+            "#856088\n",
+            "#FFB200\n",
+            "#7B3F00\n",
+            "#D2691E\n",
+            "#98817B\n",
+            "#E34234\n",
+            "#CD607E\n",
+            "#E4D00A\n",
+            "#9FA91F\n",
+            "#7F1734\n",
+            "#6F4E37\n",
+            "#B9D9EB\n",
+            "#F88379\n",
+            "#8C92AC\n",
+            "#B87333\n",
+            "#DA8A67\n",
+            "#AD6F69\n",
+            "#CB6D51\n",
+            "#996666\n",
+            "#FF3800\n",
+            "#FF7F50\n",
+            "#F88379\n",
+            "#893F45\n",
+            "#FBEC5D\n",
+            "#6495ED\n",
+            "#FFF8DC\n",
+            "#2E2D88\n",
+            "#FFF8E7\n",
+            "#81613C\n",
+            "#FFBCD9\n",
+            "#FFFDD0\n",
+            "#DC143C\n",
+            "#9E1B32\n",
+            "#F5F5F5\n",
+            "#00FFFF\n",
+            "#00B7EB\n",
+            "#58427C\n",
+            "#FFD300\n",
+            "#F56FA1\n",
+            "#654321\n",
+            "#5D3954\n",
+            "#008B8B\n",
+            "#536878\n",
+            "#B8860B\n",
+            "#006400\n",
+            "#1A2421\n",
+            "#BDB76B\n",
+            "#483C32\n",
+            "#543D37\n",
+            "#8B008B\n",
+            "#556B2F\n",
+            "#FF8C00\n",
+            "#9932CC\n",
+            "#301934\n",
+            "#8B0000\n",
+            "#E9967A\n",
+            "#8FBC8F\n",
+            "#3C1414\n",
+            "#8CBED6\n",
+            "#483D8B\n",
+            "#2F4F4F\n",
+            "#177245\n",
+            "#00CED1\n",
+            "#9400D3\n",
+            "#555555\n",
+            "#DA3287\n",
+            "#FAD6A5\n",
+            "#B94E48\n",
+            "#004B49\n",
+            "#FF1493\n",
+            "#FF9933\n",
+            "#00BFFF\n",
+            "#4A646C\n",
+            "#7E5E60\n",
+            "#1560BD\n",
+            "#2243B6\n",
+            "#C19A6B\n",
+            "#EDC9AF\n",
+            "#696969\n",
+            "#1E90FF\n",
+            "#4A412A\n",
+            "#00009C\n",
+            "#EFDFBB\n",
+            "#555D50\n",
+            "#C2B280\n",
+            "#1B1B1B\n",
+            "#614051\n",
+            "#F0EAD6\n",
+            "#CCFF00\n",
+            "#BF00FF\n",
+            "#8F00FF\n",
+            "#50C878\n",
+            "#6C3082\n",
+            "#B48395\n",
+            "#AB4B52\n",
+            "#CC474B\n",
+            "#563C5C\n",
+            "#00FF40\n",
+            "#96C8A2\n",
+            "#C19A6B\n",
+            "#801818\n",
+            "#B53389\n",
+            "#DE5285\n",
+            "#E5AA70\n",
+            "#4F7942\n",
+            "#6C541E\n",
+            "#FF5470\n",
+            "#683068\n",
+            "#B22222\n",
+            "#CE2029\n",
+            "#E25822\n",
+            "#EEDC82\n",
+            "#A2006D\n",
+            "#FFFAF0\n",
+            "#228B22\n",
+            "#A67B5B\n",
+            "#856D4D\n",
+            "#0072BB\n",
+            "#FD3F92\n",
+            "#86608E\n",
+            "#9EFD38\n",
+            "#D473D4\n",
+            "#FD6C9E\n",
+            "#C72C48\n",
+            "#77B5FE\n",
+            "#8806CE\n",
+            "#E936A7\n",
+            "#FF00FF\n",
+            "#C154C1\n",
+            "#E48400\n",
+            "#87421F\n",
+          ];
+          f = [];
+          new Chart("myChart2", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [
+                {
+                  backgroundColor: barColors,
+                  data: yValues,
+                },
+              ],
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: " Likelihood",
+              },
+            },
+          });
+        </script>
+      </div>
     </div>
-    <div class="canvas2">
-
-      <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
-
-      <script>
-        var xValues =
-          ['Nigeria/2018', 'United States of America/2200', 'United States of America/2018', 'United States of America/2019', 'United States of America/2019', 'United States of America/2019', 'United States of America/2018', 'United States of America/2019', 'United States of America/2020', 'United States of America/2019', 'United States of America/2018', 'United States of America/2018', 'United States of America/2020', 'Libya/2019', 'United States of America/2018', 'India/2018', 'United States of America/2017', 'Iran/2018', 'China/2017', 'Russia/2017', 'Saudi Arabia/2017', 'Russia/2019', 'United States of America/2017', 'India/2017', 'United States of America/2017', 'United States of America/2030', 'India/2017']
-          ;
-
-        var yValues = [4, 6, 4, 4, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2];
-
-        var barColors = ['#0048BA\n', '#B0BF1A\n', '#7CB9E8\n', '#B284BE\n', '#72A0C1\n', '#F0F8FF\n', '#DB2D43\n', '#C46210\n', '#EFDECD\n', '#9F2B68\n', '#F19CBB\n', '#AB274F\n', '#3B7A57\n', '#FFBF00\n', '#9966CC\n', '#3DDC84\n', '#CD9575\n', '#665D1E\n', '#915C83\n', '#841B2D\n', '#FAEBD7\n', '#FBCEB1\n', '#00FFFF\n', '#7FFFD4\n', '#D0FF14\n', '#4B6F44\n', '#E9D66B\n', '#B2BEB5\n', '#FF9966\n', '#FDEE00\n', '#007FFF\n', '#F0FFFF\n', '#89CFF0\n', '#A1CAF1\n', '#F4C2C2\n', '#FEFEFA\n', '#FF91AF\n', '#FAE7B5\n', '#DA1884\n', '#7C0A02\n', '#848482\n', '#BCD4E6\n', '#9F8170\n', '#F5F5DC\n', '#2E5894\n', '#9C2542\n', '#FFE4C4\n', '#3D2B1F\n', '#967117\n', '#CAE00D\n', '#000000\n', '#3D0C02\n', '#54626F\n', '#3B3C36\n', '#BFAFB2\n', '#FFEBCD\n', '#A57164\n', '#318CE7\n', '#ACE5EE\n', '#660000\n', '#0000FF\n', '#1F75FE\n', '#0093AF\n', '#0087BD\n', '#0018A8\n', '#333399\n', '#A2A2D0\n', '#6699CC\n', '#5DADEC\n', '#126180\n', '#8A2BE2\n', '#5072A7\n', '#3C69E7\n', '#DE5D83\n', '#79443B\n', '#E3DAC9\n', '#CB4154\n', '#D891EF\n', '#FFAA1D\n', '#CD7F32\n', '#AF6E4D\n', '#7BB661\n', '#FFC680\n', '#800020\n', '#DEB887\n', '#A17A74\n', '#CC5500\n', '#E97451\n', '#8A3324\n', '#BD33A4\n', '#702963\n', '#5F9EA0\n', '#91A3B0\n', '#006B3C\n', '#ED872D\n', '#A67B5B\n', '#4B3621\n', '#A3C1AD\n', '#C19A6B\n', '#EFBBCC\n', '#FFFF99\n', '#FFEF00\n', '#E4717A\n', '#C41E3A\n', '#00CC99\n', '#960018\n', '#D70040\n', '#FFA6C9\n', '#B31B1B\n', '#56A0D3\n', '#ED9121\n', '#703642\n', '#C95A49\n', '#ACE1AF\n', '#B2FFFF\n', '#DE3163\n', '#007BA7\n', '#2A52BE\n', '#6D9BC3\n', '#1DACD6\n', '#F7E7CE\n', '#F1DDCF\n', '#36454F\n', '#E68FAC\n', '#80FF00\n', '#FFB7C5\n', '#954535\n', '#E23D28\n', '#DE6FA1\n', '#AA381E\n', '#856088\n', '#FFB200\n', '#7B3F00\n', '#D2691E\n', '#98817B\n', '#E34234\n', '#CD607E\n', '#E4D00A\n', '#9FA91F\n', '#7F1734\n', '#6F4E37\n', '#B9D9EB\n', '#F88379\n', '#8C92AC\n', '#B87333\n', '#DA8A67\n', '#AD6F69\n', '#CB6D51\n', '#996666\n', '#FF3800\n', '#FF7F50\n', '#F88379\n', '#893F45\n', '#FBEC5D\n', '#6495ED\n', '#FFF8DC\n', '#2E2D88\n', '#FFF8E7\n', '#81613C\n', '#FFBCD9\n', '#FFFDD0\n', '#DC143C\n', '#9E1B32\n', '#F5F5F5\n', '#00FFFF\n', '#00B7EB\n', '#58427C\n', '#FFD300\n', '#F56FA1\n', '#654321\n', '#5D3954\n', '#008B8B\n', '#536878\n', '#B8860B\n', '#006400\n', '#1A2421\n', '#BDB76B\n', '#483C32\n', '#543D37\n', '#8B008B\n', '#556B2F\n', '#FF8C00\n', '#9932CC\n', '#301934\n', '#8B0000\n', '#E9967A\n', '#8FBC8F\n', '#3C1414\n', '#8CBED6\n', '#483D8B\n', '#2F4F4F\n', '#177245\n', '#00CED1\n', '#9400D3\n', '#555555\n', '#DA3287\n', '#FAD6A5\n', '#B94E48\n', '#004B49\n', '#FF1493\n', '#FF9933\n', '#00BFFF\n', '#4A646C\n', '#7E5E60\n', '#1560BD\n', '#2243B6\n', '#C19A6B\n', '#EDC9AF\n', '#696969\n', '#1E90FF\n', '#4A412A\n', '#00009C\n', '#EFDFBB\n', '#555D50\n', '#C2B280\n', '#1B1B1B\n', '#614051\n', '#F0EAD6\n', '#CCFF00\n', '#BF00FF\n', '#8F00FF\n', '#50C878\n', '#6C3082\n', '#B48395\n', '#AB4B52\n', '#CC474B\n', '#563C5C\n', '#00FF40\n', '#96C8A2\n', '#C19A6B\n', '#801818\n', '#B53389\n', '#DE5285\n', '#E5AA70\n', '#4F7942\n', '#6C541E\n', '#FF5470\n', '#683068\n', '#B22222\n', '#CE2029\n', '#E25822\n', '#EEDC82\n', '#A2006D\n', '#FFFAF0\n', '#228B22\n', '#A67B5B\n', '#856D4D\n', '#0072BB\n', '#FD3F92\n', '#86608E\n', '#9EFD38\n', '#D473D4\n', '#FD6C9E\n', '#C72C48\n', '#77B5FE\n', '#8806CE\n', '#E936A7\n', '#FF00FF\n', '#C154C1\n', '#E48400\n', '#87421F\n']
-        f = []
-        new Chart("myChart1", {
-          type: "bar",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-          },
-          options: {
-            legend: { display: false },
-            title: {
-              display: true,
-              text: "Relevance"
-            }
-          }
-        });
-
-      </script>
-
-    </div>
-    <div class="canvas3">
-
-
-      <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
-
-      <script>
-        var xValues =
-          ['Nigeria/2018', 'United States of America/2200', 'United States of America/2018', 'United States of America/2019', 'United States of America/2019', 'United States of America/2019', 'United States of America/2018', 'United States of America/2019', 'United States of America/2020', 'United States of America/2019', 'United States of America/2018', 'United States of America/2018', 'United States of America/2020', 'Libya/2019', 'United States of America/2018', 'India/2018', 'United States of America/2017', 'Iran/2018', 'China/2017', 'Russia/2017', 'Saudi Arabia/2017', 'Russia/2019', 'United States of America/2017', 'India/2017', 'United States of America/2017', 'United States of America/2030', 'India/2017']
-          ;
-
-        var yValues = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 3];
-
-
-        var barColors = ['#0048BA\n', '#B0BF1A\n', '#7CB9E8\n', '#B284BE\n', '#72A0C1\n', '#F0F8FF\n', '#DB2D43\n', '#C46210\n', '#EFDECD\n', '#9F2B68\n', '#F19CBB\n', '#AB274F\n', '#3B7A57\n', '#FFBF00\n', '#9966CC\n', '#3DDC84\n', '#CD9575\n', '#665D1E\n', '#915C83\n', '#841B2D\n', '#FAEBD7\n', '#FBCEB1\n', '#00FFFF\n', '#7FFFD4\n', '#D0FF14\n', '#4B6F44\n', '#E9D66B\n', '#B2BEB5\n', '#FF9966\n', '#FDEE00\n', '#007FFF\n', '#F0FFFF\n', '#89CFF0\n', '#A1CAF1\n', '#F4C2C2\n', '#FEFEFA\n', '#FF91AF\n', '#FAE7B5\n', '#DA1884\n', '#7C0A02\n', '#848482\n', '#BCD4E6\n', '#9F8170\n', '#F5F5DC\n', '#2E5894\n', '#9C2542\n', '#FFE4C4\n', '#3D2B1F\n', '#967117\n', '#CAE00D\n', '#000000\n', '#3D0C02\n', '#54626F\n', '#3B3C36\n', '#BFAFB2\n', '#FFEBCD\n', '#A57164\n', '#318CE7\n', '#ACE5EE\n', '#660000\n', '#0000FF\n', '#1F75FE\n', '#0093AF\n', '#0087BD\n', '#0018A8\n', '#333399\n', '#A2A2D0\n', '#6699CC\n', '#5DADEC\n', '#126180\n', '#8A2BE2\n', '#5072A7\n', '#3C69E7\n', '#DE5D83\n', '#79443B\n', '#E3DAC9\n', '#CB4154\n', '#D891EF\n', '#FFAA1D\n', '#CD7F32\n', '#AF6E4D\n', '#7BB661\n', '#FFC680\n', '#800020\n', '#DEB887\n', '#A17A74\n', '#CC5500\n', '#E97451\n', '#8A3324\n', '#BD33A4\n', '#702963\n', '#5F9EA0\n', '#91A3B0\n', '#006B3C\n', '#ED872D\n', '#A67B5B\n', '#4B3621\n', '#A3C1AD\n', '#C19A6B\n', '#EFBBCC\n', '#FFFF99\n', '#FFEF00\n', '#E4717A\n', '#C41E3A\n', '#00CC99\n', '#960018\n', '#D70040\n', '#FFA6C9\n', '#B31B1B\n', '#56A0D3\n', '#ED9121\n', '#703642\n', '#C95A49\n', '#ACE1AF\n', '#B2FFFF\n', '#DE3163\n', '#007BA7\n', '#2A52BE\n', '#6D9BC3\n', '#1DACD6\n', '#F7E7CE\n', '#F1DDCF\n', '#36454F\n', '#E68FAC\n', '#80FF00\n', '#FFB7C5\n', '#954535\n', '#E23D28\n', '#DE6FA1\n', '#AA381E\n', '#856088\n', '#FFB200\n', '#7B3F00\n', '#D2691E\n', '#98817B\n', '#E34234\n', '#CD607E\n', '#E4D00A\n', '#9FA91F\n', '#7F1734\n', '#6F4E37\n', '#B9D9EB\n', '#F88379\n', '#8C92AC\n', '#B87333\n', '#DA8A67\n', '#AD6F69\n', '#CB6D51\n', '#996666\n', '#FF3800\n', '#FF7F50\n', '#F88379\n', '#893F45\n', '#FBEC5D\n', '#6495ED\n', '#FFF8DC\n', '#2E2D88\n', '#FFF8E7\n', '#81613C\n', '#FFBCD9\n', '#FFFDD0\n', '#DC143C\n', '#9E1B32\n', '#F5F5F5\n', '#00FFFF\n', '#00B7EB\n', '#58427C\n', '#FFD300\n', '#F56FA1\n', '#654321\n', '#5D3954\n', '#008B8B\n', '#536878\n', '#B8860B\n', '#006400\n', '#1A2421\n', '#BDB76B\n', '#483C32\n', '#543D37\n', '#8B008B\n', '#556B2F\n', '#FF8C00\n', '#9932CC\n', '#301934\n', '#8B0000\n', '#E9967A\n', '#8FBC8F\n', '#3C1414\n', '#8CBED6\n', '#483D8B\n', '#2F4F4F\n', '#177245\n', '#00CED1\n', '#9400D3\n', '#555555\n', '#DA3287\n', '#FAD6A5\n', '#B94E48\n', '#004B49\n', '#FF1493\n', '#FF9933\n', '#00BFFF\n', '#4A646C\n', '#7E5E60\n', '#1560BD\n', '#2243B6\n', '#C19A6B\n', '#EDC9AF\n', '#696969\n', '#1E90FF\n', '#4A412A\n', '#00009C\n', '#EFDFBB\n', '#555D50\n', '#C2B280\n', '#1B1B1B\n', '#614051\n', '#F0EAD6\n', '#CCFF00\n', '#BF00FF\n', '#8F00FF\n', '#50C878\n', '#6C3082\n', '#B48395\n', '#AB4B52\n', '#CC474B\n', '#563C5C\n', '#00FF40\n', '#96C8A2\n', '#C19A6B\n', '#801818\n', '#B53389\n', '#DE5285\n', '#E5AA70\n', '#4F7942\n', '#6C541E\n', '#FF5470\n', '#683068\n', '#B22222\n', '#CE2029\n', '#E25822\n', '#EEDC82\n', '#A2006D\n', '#FFFAF0\n', '#228B22\n', '#A67B5B\n', '#856D4D\n', '#0072BB\n', '#FD3F92\n', '#86608E\n', '#9EFD38\n', '#D473D4\n', '#FD6C9E\n', '#C72C48\n', '#77B5FE\n', '#8806CE\n', '#E936A7\n', '#FF00FF\n', '#C154C1\n', '#E48400\n', '#87421F\n']
-        f = []
-        new Chart("myChart2", {
-          type: "bar",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-          },
-          options: {
-            legend: { display: false },
-            title: {
-              display: true,
-              text: " Likelihood"
-            }
-          }
-        });
-
-      </script>
-    </div>
-  </div>
-  
-  
-
-</body>
-
+  </body>
 </html>

@@ -1,5 +1,4 @@
 def cal(*numbers):
-    # for i in numbers:
    x =  list(numbers)
    y = len(x)
    count = 0
